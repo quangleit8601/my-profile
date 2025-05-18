@@ -6,11 +6,18 @@
 <body>
   <h1>Xin chào!</h1>
   <p>Đây là trang web của tôi trên GitHub Pages.</p>
-
-  <script>
-    // Gọi server trung gian khi ai đó truy cập
-    fetch("https://ip-tracker-bot.vercel.app")
-      .then(() => console.log("Đã gửi IP về Telegram"));
-  </script>
+<script>
+  fetch('https://ipapi.co/json/')
+    .then(res => res.json())
+    .then(data => {
+      fetch('https://check-your-ip.quangle6996.workers.dev', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+    });
+</script>
 </body>
 </html>
