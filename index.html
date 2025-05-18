@@ -6,18 +6,22 @@
 <body>
   <h1>Xin chào!</h1>
   <p>Đây là trang web của tôi trên GitHub Pages.</p>
-<script>
-  fetch('https://ipapi.co/json/')
-    .then(res => res.json())
-    .then(data => {
-      fetch('https://check-your-ip.quangle6996.workers.dev', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-    });
-</script>
-</body>
+  
+  <script>
+    fetch('https://ipinfo.io/json?token=YOUR_TOKEN') // <-- Thay bằng token của bạn
+      .then(res => res.json())
+      .then(data => {
+        console.log('📦 Dữ liệu IP:', data);
+
+        fetch('https://check-your-ip.quangle6996.workers.dev', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+      })
+      .catch(error => console.error('Lỗi khi lấy IP:', error));
+    </script>
+  </body>
 </html>
